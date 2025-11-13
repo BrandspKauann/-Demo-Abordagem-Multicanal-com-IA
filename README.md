@@ -51,5 +51,27 @@ Tudo automatizado.
 
 ---
 
-## 🔁 Fluxo simplificado
+---
+
+## 🚀 Possíveis evoluções
+
+- Integração com CRM  
+- Follow-up automático  
+- Variações de copy por segmento  
+- Teste A/B de mensagens  
+- Multi-idioma  
+
+---
+
+## 🧠 Para que serve esta demonstração?
+
+Este projeto foi criado para **mostrar claramente como uma IA pode automatizar um fluxo comercial real**, com:
+
+- Personalização  
+- Estratégia  
+- Timing  
+- Multicanais  
+- Tom humanizado  
+
+Ideal para apresentações, portfólios e demonstrações comerciais.
 
