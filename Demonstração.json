@@ -1,0 +1,623 @@
+{
+  "name": "Demonstração.",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e5b6ba3b-9950-44f1-874d-5404f0338d23",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3678288b-5be0-4460-a5f0-222bd16906eb",
+              "name": "Nome",
+              "value": "Israel",
+              "type": "string"
+            },
+            {
+              "id": "3fa6111f-659b-44a4-9444-e2d91f160bb3",
+              "name": "Email",
+              "value": "francisco.gomes@fairfield.com.br",
+              "type": "string"
+            },
+            {
+              "id": "e2dc244f-d5b2-4916-a88e-80a3d9cf68aa",
+              "name": "Telefone",
+              "value": "552195164169",
+              "type": "string"
+            },
+            {
+              "id": "b274ee8a-1ea9-4688-b8c1-9530709e3496",
+              "name": "Empresa",
+              "value": "FairField",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "e19a2fd1-d198-4882-90d0-9938e81659b6",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1a6m19ay8qmjFVzbUSDzYhF62shghz4xTiwmgd82nH14",
+          "mode": "list",
+          "cachedResultName": "Demonstração",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a6m19ay8qmjFVzbUSDzYhF62shghz4xTiwmgd82nH14/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a6m19ay8qmjFVzbUSDzYhF62shghz4xTiwmgd82nH14/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $json.Email }}",
+            "Nome": "={{ $json.Nome }}",
+            "Telefone": "={{ $json.Telefone }}",
+            "Empresa": "={{ $json.Empresa }}",
+            "Enviou email?": "Não",
+            "Enviou Whatsapp?": "Não"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Telefone",
+              "displayName": "Telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Empresa",
+              "displayName": "Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Enviou email?",
+              "displayName": "Enviou email?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Enviou Whatsapp?",
+              "displayName": "Enviou Whatsapp?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        0
+      ],
+      "id": "2290d070-b71e-45f8-80b2-b2a119d54a11",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uLXY8TrnhrCFKybJ",
+          "name": "marketing kauann"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Você é um copiryther de assunto de email, seu objetivo é fazer uma breve pesquisa de mercado interna sobre a empresa:  {{ $json.Empresa }}\n\nE assim, você deve criar um assunto de email com emoticon engajador e chamativo para fazer com que a taxa de abertura seja alta.\n\nVocê deve abordar essa empresa: {{ $json.Empresa }} como se você trabalhasse na Brandsp.\n\nVou falar sobre a Brandsp para você ter conhecimento dos produtos e serviços da emmpresa Brandsp:\n\nMinha empresa: Brandsp\nQual serviço ofereço: Abordagem multicanal personalizada com IA\nComo funciona?: Análise Inteligente do Perfil\nIA analisa dados do contato e cria uma abordagem única baseada no comportamento e características identificadas.\n\nMensagens Contextualizadas\nCada mensagem é adaptada ao canal, momento e perfil do prospect, aumentando significativamente a taxa de resposta.\n\nTiming Otimizado\nSistema identifica os melhores horários e dias para cada contato, maximizando as chances de engajamento.\n\nTom de Voz Humanizado\nIA adapta linguagem, formalidade e estilo de comunicação para cada prospect, criando conexões mais naturais.\n\nQuero que você não responda com a pesquisa de mercado sobre a empresa, apenas faça uma relação entre o serviço da empresa-alvo com a Brandsp, quero que você responda de forma direta como a Brandsp pode ajudar a {{ $json.Empresa }}, seja específico ao ponto de parecer extremamente pessoal.\n\nObjetivo: Estou mostrando na prática como funciona a abordagem personalizada com IA, então você precisa na sua resposta parecer extremamente pessoal e usar gatilhos que façam o usuário achar que você pesquisou detalhamente a empresa-alvo antes de escrever.\n\nVocê deve apenas gerar o assunto do e-mail e não o email inteiro, apenas o assunto.\n\nAté 40 caracteres."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        688,
+        0
+      ],
+      "id": "80591b6d-a3e9-48dd-9327-134182f718b1",
+      "name": "Assunto",
+      "credentials": {
+        "openAiApi": {
+          "id": "cK1pm1LkkFngLHMg",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Você é um copiryther de corpo de email, seu objetivo é fazer uma breve pesquisa de mercado interna sobre a empresa: {{ $('Edit Fields').item.json.Empresa }} \n\n\nVocê deve abordar essa empresa: {{ $('Edit Fields').item.json.Empresa }} como se você trabalhasse na Brandsp.\n\nVou falar sobre a Brandsp para você ter conhecimento dos produtos e serviços da emmpresa Brandsp:\n\nMinha empresa: Brandsp\nQual serviço ofereço: Abordagem multicanal personalizada com IA\nComo funciona?: Análise Inteligente do Perfil\nIA analisa dados do contato e cria uma abordagem única baseada no comportamento e características identificadas.\n\nMensagens Contextualizadas\nCada mensagem é adaptada ao canal, momento e perfil do prospect, aumentando significativamente a taxa de resposta.\n\nTiming Otimizado\nSistema identifica os melhores horários e dias para cada contato, maximizando as chances de engajamento.\n\nTom de Voz Humanizado\nIA adapta linguagem, formalidade e estilo de comunicação para cada prospect, criando conexões mais naturais.\n\nQuero que você não responda com a pesquisa de mercado sobre a empresa, apenas faça uma relação entre o serviço da empresa-alvo com a Brandsp, quero que você responda de forma direta como a Brandsp pode ajudar a {{ $('Edit Fields').item.json.Empresa }}, seja específico ao ponto de parecer extremamente pessoal.\n\nObjetivo: Estou mostrando na prática como funciona a abordagem personalizada com IA, então você precisa na sua resposta parecer extremamente pessoal e usar gatilhos que façam o usuário achar que você pesquisou detalhamente a empresa-alvo antes de escrever.\n\nVocê deve criar o assunto do e-mail, o email é endereçado ao:{{ $('Edit Fields').item.json.Nome }}\n\nSeu nome é Kauann Pires, use isso no rodapé, Kauann Pires e empresa Brandsp.\n\nNão crie assunto, apenas o corpo direto ao ponto."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        992,
+        0
+      ],
+      "id": "85192830-910f-4ab3-b034-556139e6b142",
+      "name": "Assunto1",
+      "credentials": {
+        "openAiApi": {
+          "id": "cK1pm1LkkFngLHMg",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "kauann@brandsp.com.br",
+        "toEmail": "={{ $('Edit Fields').item.json.Email }}",
+        "subject": "={{ $('Assunto').item.json.message.content }}",
+        "emailFormat": "text",
+        "text": "={{ $json.message.content }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1328,
+        0
+      ],
+      "id": "82550559-4714-48f2-a647-c20831a6562c",
+      "name": "Send email",
+      "webhookId": "a4c0bfd6-02b9-47cf-a644-cd3772190251",
+      "credentials": {
+        "smtp": {
+          "id": "0UCMKDra3TgWx3XJ",
+          "name": "SMTP account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1a6m19ay8qmjFVzbUSDzYhF62shghz4xTiwmgd82nH14",
+          "mode": "list",
+          "cachedResultName": "Demonstração",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a6m19ay8qmjFVzbUSDzYhF62shghz4xTiwmgd82nH14/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a6m19ay8qmjFVzbUSDzYhF62shghz4xTiwmgd82nH14/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $('Edit Fields').item.json.Email }}",
+            "Enviou email?": "Sim"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Telefone",
+              "displayName": "Telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Empresa",
+              "displayName": "Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Enviou email?",
+              "displayName": "Enviou email?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Enviou Whatsapp?",
+              "displayName": "Enviou Whatsapp?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1536,
+        0
+      ],
+      "id": "644ed258-e834-4ad6-a676-67ed100603a6",
+      "name": "Append or update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uLXY8TrnhrCFKybJ",
+          "name": "marketing kauann"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -16,
+        256
+      ],
+      "id": "667fcba7-ecef-4421-a06b-0dce39e3d835",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1a6m19ay8qmjFVzbUSDzYhF62shghz4xTiwmgd82nH14",
+          "mode": "list",
+          "cachedResultName": "Demonstração",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a6m19ay8qmjFVzbUSDzYhF62shghz4xTiwmgd82nH14/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1a6m19ay8qmjFVzbUSDzYhF62shghz4xTiwmgd82nH14/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Enviou email?",
+              "lookupValue": "Sim"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        192,
+        256
+      ],
+      "id": "f4ab8fdb-b58c-4793-b3b5-4e22ca4459c7",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uLXY8TrnhrCFKybJ",
+          "name": "marketing kauann"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=VoCê é um especialista em abordagem por Whatsapp.\n\nSua obrigação será abordar a empresa:{{ $('Get row(s) in sheet').item.json.Empresa }}\n\nContexto: Você enviou um email mas o:{{ $('Get row(s) in sheet').item.json.Nome }}  não respondeu o e-mail, por isso está enviando mensagem no whatsapp, deve levar isso em consideração na mensagem.\n\nFaça uma breve pesquisa de mercado sobre a empresa: {{ $('Get row(s) in sheet').item.json.Empresa }} para aborda-los.\n\nVocê representa a Brandsp, segue os serviços e produtos que a Brandsp faz:\n\nMinha empresa: Brandsp\nQual serviço ofereço: Abordagem multicanal personalizada com IA\nComo funciona?: Análise Inteligente do Perfil\nIA analisa dados do contato e cria uma abordagem única baseada no comportamento e características identificadas.\n\nMensagens Contextualizadas\nCada mensagem é adaptada ao canal, momento e perfil do prospect, aumentando significativamente a taxa de resposta.\n\nTiming Otimizado\nSistema identifica os melhores horários e dias para cada contato, maximizando as chances de engajamento.\n\nTom de Voz Humanizado\nIA adapta linguagem, formalidade e estilo de comunicação para cada prospect, criando conexões mais naturais.\n\nQuero que você não responda com a pesquisa de mercado sobre a empresa, apenas faça uma relação entre o serviço da empresa-alvo com a Brandsp, quero que você responda de forma direta como a Brandsp pode ajudar a {{ $('Get row(s) in sheet').item.json.Empresa }}, seja específico ao ponto de parecer extremamente pessoal.\n\nObjetivo: Estou mostrando na prática como funciona a abordagem personalizada com IA, então você precisa na sua resposta parecer extremamente pessoal e usar gatilhos que façam o usuário achar que você pesquisou detalhamente a empresa-alvo antes de escrever.\n\nMáximo 300 caracteres"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        608,
+        256
+      ],
+      "id": "224c1f47-fd39-4996-8be5-31b591c7b79d",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "cK1pm1LkkFngLHMg",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "Kauann",
+        "remoteJid": "={{ $('Edit Fields1').item.json.telefone }}",
+        "messageText": "={{ $json.message.content }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        960,
+        256
+      ],
+      "id": "dbd6bf04-328f-4d49-99a8-16415ebf833e",
+      "name": "Enviar texto",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3d4NbAnbQbrFDCCR",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b6fe2303-44a1-4f9e-bb15-f8edf28a4e7c",
+              "name": "telefone",
+              "value": "={{ $json.Telefone }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        400,
+        256
+      ],
+      "id": "09bb7e18-691d-49ed-86a4-1ab06ef73a37",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Assunto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Assunto": {
+      "main": [
+        [
+          {
+            "node": "Assunto1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Assunto1": {
+      "main": [
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send email": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7511a945-1e58-4ed3-b223-728d4ed032ec",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "857987448ada7fd34a0395675321758d0d3fb3add588e4d01e275ebfb295ca76"
+  },
+  "id": "jNpi7R3NstPwunhZ",
+  "tags": []
+}
